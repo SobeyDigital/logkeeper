@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <appender name="all_error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+        <File>../softEngineLogs/Engine/ERROR/FTEngineError.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedLargeWindowRollingPolicy">
+            <FileNamePattern>../softEngineLogs/Engine/ERROR/FTEngineError.%i.zip</FileNamePattern>
+            <MinIndex>1</MinIndex>
+            <MaxIndex>50</MaxIndex>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>50MB</MaxFileSize>
+        </triggeringPolicy>
+        <!--<layout class="ch.qos.logback.classic.PatternLayout"> <Pattern>%date [%thread] %-5level %logger{80} - %msg%n</Pattern> </layout> -->
+        <encoder>
+            <pattern>%date %-5level [%thread] %logger{80} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <appender name="all_info" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- <Prudent>true</Prudent> -->
+        <!-- 带Hibernate的日志 ch.qos.logback.classic.filter.HibernateDEBUGThresholdFilter 不带Hibernate的日志 ch.qos.logback.classic.filter.ThresholdFilter -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <File>../softEngineLogs/Engine/ALL/FTEngineServer.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> <!-- rollover daily -->
+            <fileNamePattern>../softEngineLogs/Engine/ALL/%d{yyyy-MM-dd}-FTEngineServer.%i.zip
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"> <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>50MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!--默认保存60天的日志,避免日志过大把硬盘撑破了-->
+            <maxHistory>60</maxHistory>
+        </rollingPolicy>
+        <!-- <layout class="ch.qos.logback.classic.PatternLayout"> <Pattern>%date [%thread] %-5level %logger{80} - %msg%n</Pattern> </layout> -->
+        <encoder>
+            <pattern>%date %-5level [%thread] %logger{80} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="UTF-8">
+            <pattern>%date %-5level [%thread] %logger{80} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.sobey" level="info" />
+    <logger name="org.quartz" level="warn" />
+    <!--如果是DEBUG,那么就会打印请求的时间和用时.  如果是TRACE,那么就会打印方法的入参和出参-->
+    <!--<logger name="com.sobey.jcg.ftengine.core.log.PrefMethodInterceptor" level="TRACE"/>-->
+
+    <root level="INFO">
+
+        <!--<appender-ref ref="all_info" />-->
+        <!--<appender-ref ref="all_error" />-->
+        <!--生产环境关闭-->
+        <appender-ref ref="stdout" />
+    </root>
+    
+</configuration>

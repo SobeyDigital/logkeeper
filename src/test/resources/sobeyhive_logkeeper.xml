@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+">
+    <import resource="classpath:sobeyhive_bean_commons.xml"/>
+    <import resource="classpath:sobeyhive_commons_restsupport.xml"/>
+    <import resource="classpath:sobeyhive_bean_apidocument.xml"/>
+
+    <!--<import resource="sobeyhive_remoting_dubbosupport.xml"/>-->
+
+    <!--<bean id="testBatchMapper" class="com.sobey.jcg.sobeyhive.flow.fiflow.core.batch.FlowTestMapper"/>-->
+    <!--<bean id="testBatchReducer" class="com.sobey.jcg.sobeyhive.flow.fiflow.core.batch.FlowTestReducer">-->
+        <!--<property name="flowInstanceService" ref="flow_instanceService"/>-->
+    <!--</bean>-->
+
+    <!--<dubbo:service interface="com.sobey.jcg.sobeyhive.flow.flowinterface.batch.IFlowBatchMapper" ref="testBatchMapper" group="testMapper"/>-->
+    <!--<dubbo:service interface="com.sobey.jcg.sobeyhive.flow.flowinterface.batch.IFlowBatchReducer" ref="testBatchReducer" group="testReducer"/>-->
+</beans>
